@@ -22,6 +22,7 @@ import com.blikoon.rooster.util.GenearteUID;
 import com.blikoon.rooster.util.SessionManager;*/
 
 import com.ahmed.chatapplication.ChatActivity;
+import com.ahmed.chatapplication.GlobalUtil;
 import com.ahmed.chatapplication.R;
 import com.ahmed.chatapplication.SplashActivity;
 import com.ahmed.chatapplication.app.AppController;
@@ -30,14 +31,12 @@ import com.bilkoon.rooster.model.ChatMessage;
 import com.bilkoon.rooster.model.Contact;
 import com.bilkoon.rooster.model.RegistrationInfo;
 import com.bilkoon.rooster.service.RoosterConnectionService;
-//import com.bilkoon.rooster.util.CompareDates;
 import com.bilkoon.rooster.util.SessionManager;
 
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.ReconnectionManager;
 import org.jivesoftware.smack.SmackException;
-//import org.jivesoftware.smack.StanzaListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.chat.Chat;
@@ -355,7 +354,7 @@ public class RoosterConnection implements ConnectionListener {
                         datasource.createMessage(me_buddy, chatMessage);
                         datasource.close();
                         //createSoundNotification("incomming");
-                        createMessageNotification("New Message", contactJid, chatMessage.getContent());
+                        GlobalUtil.createMessageNotification(mApplicationContext, "New Message", contactJid, chatMessage.getContent());
                         //--------------------//
                     }
                     Log.d(TAG, "Received message from :" + contactJid + " broadcast sent.");
@@ -1254,55 +1253,4 @@ public class RoosterConnection implements ConnectionListener {
         builder.setSound(alarmSound);
         soundNotification.notify(1, builder.build());
     }*/
-
-    public NotificationManager mNotificationManager;
-    public Intent resultIntent;
-    public int notifyID;
-    static AtomicInteger at = new AtomicInteger(9001);
-    private void createMessageNotification(String title, String jid, String message){
-        resultIntent = new Intent(mApplicationContext, ChatActivity.class);
-        Log.d(TAG, "Notification Status : ");
-        resultIntent.putExtra("jid", jid);
-        //resultIntent.putExtra("status", preferences.loadSmackStatus(""+user.getServerId()));
-        //resultIntent.putExtra("phone", preferences.loadSmackPhone(""+user.getServerId()));
-        //resultIntent.putExtra("loadHistory", true);
-        //resultIntent.putExtra("incommingMessage", true);
-
-        Uri alarmSound = Uri.parse("android.resource://" + mApplicationContext.getPackageName() + "/" + R.raw.incoming);
-
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(mApplicationContext, 0,
-                resultIntent, PendingIntent.FLAG_ONE_SHOT);
-
-        NotificationCompat.Builder mNotifyBuilder;
-        mNotificationManager = (NotificationManager) mApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        mNotifyBuilder = new NotificationCompat.Builder(mApplicationContext)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setSound(alarmSound)
-                .setSmallIcon(R.drawable.ic_stat_ic_notification);
-        // Set pending intent
-        mNotifyBuilder.setContentIntent(resultPendingIntent);
-        // Set Vibrate, Sound and Light
-        int defaults = 0;
-        defaults = defaults | Notification.DEFAULT_LIGHTS;
-        defaults = defaults | Notification.DEFAULT_VIBRATE;
-        defaults = defaults | Notification.DEFAULT_SOUND;
-
-        mNotifyBuilder.setDefaults(defaults);
-
-        //if(isImage==1)    msg = title +" sent you an image";
-        //mNotifyBuilder.setContentText(msg);
-        // Set autocancel
-        mNotifyBuilder.setAutoCancel(true);
-        // Post a notification
-        notifyID = at.getAndAdd(1);
-        mNotificationManager.notify(notifyID, mNotifyBuilder.build());
-
-        int count = sessionManager.loadNotifyCount(title);
-        Log.d(TAG, "Notification count "+count);
-        sessionManager.saveNotifyId(title, count, notifyID);
-        sessionManager.saveNotifyCount(title, count+1);
-        // Set the content for Notification
-    }
 }

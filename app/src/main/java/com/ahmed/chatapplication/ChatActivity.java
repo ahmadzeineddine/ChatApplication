@@ -197,6 +197,31 @@ public class ChatActivity extends AppCompatActivity implements OnTypingModified,
         createMessageSections();
     }
 
+    int cnt = 0;
+    public void updateStoredMessageStatus() {
+        stored_ln = storedMessages.size();
+        //if(userIsXmppConnected) {
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    final ChatMessage chatMessage = storedMessages.get(cnt);
+                    if (!chatMessage.isMine() && !chatMessage.getMessageStatus().equals("read")) {
+                        Log.d(TAG, "Message is read? " + chatMessage.getMessageStatus());
+                        Log.d(TAG, "Message has stanza id " + chatMessage.getStanzaId());
+                        sendMessage("~seen;" + chatMessage.getStanzaId());
+                        datasource.open();
+                        datasource.updateMessageStatusByStanzaId(chatMessage.getStanzaId(), "read");
+                    }
+                    if (cnt < stored_ln - 1) {
+                        cnt++;
+                        updateStoredMessageStatus();
+                        //datasource.close();
+                    }else datasource.close();
+                }
+            }, 500);
+        //}
+    }
+
     public void createMessageSections(){
         ArrayList<String> dates = new ArrayList<String>();
         ArrayList<String> sectionPosition = new ArrayList<String>();
@@ -332,7 +357,7 @@ public class ChatActivity extends AppCompatActivity implements OnTypingModified,
                         Toast.LENGTH_LONG).show();
             }
         }else{
-            sendGCMMessage(contactGcmId, message);
+            if(!message.contains("seen")) sendGCMMessage(contactGcmId, message);
         }
     }
 
@@ -589,6 +614,8 @@ public class ChatActivity extends AppCompatActivity implements OnTypingModified,
         typingFilter.addAction(RoosterConnectionService.BUDDY_IS_COMPOSING);
         typingFilter.addAction(RoosterConnectionService.BUDDY_HAS_STOPPED_COMPOSING);
         registerReceiver(mTypingIndicatorReceiver, typingFilter);
+
+        updateStoredMessageStatus();
     }
 
     @Override
