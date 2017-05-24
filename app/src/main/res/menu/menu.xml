@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profile"
+        android:title="@string/change_profile" />
+    <item
+        android:id="@+id/addfriend"
+        android:title="@string/add_friend" />
+    <item
+        android:id="@+id/removefriend"
+        android:title="@string/remove_friend" />
+
+    <item
+        android:id="@+id/blocklist"
+        android:title="@string/get_blocked_friends" />
+
+    <item
+        android:id="@+id/blockfriend"
+        android:title="@string/block_friend" />
+    <item
+        android:id="@+id/unblockfriend"
+        android:title="@string/unblock_friend" />
+
+    <item
+        android:id="@+id/disconnect"
+        android:title="@string/disconnect" />
+</menu>

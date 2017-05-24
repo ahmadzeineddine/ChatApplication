@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">ChatApplication</string>
+    <string name="hello_world">Hello world</string>
+    <string name="gcm_send_message">Token retrieved and sent to server! You can now use gcmsender to
+        send downstream messages to this app.</string>
+    <string name="registering_message">Generating InstanceID token...</string>
+    <string name="token_error_message">An error occurred while either fetching the InstanceID token,
+        sending the fetched token to the server or subscribing to the PubSub topic. Please try
+        running the sample again.</string>
+
+    <string name="default_input_hint">Type your message</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_name">Your name</string>
+    <string name="prompt_jid">Jabber Id</string>
+    <string name="prompt_password">Password </string>
+    <string name="confirm_password">Confirm Password </string>
+    <string name="action_sign_in">Sign in </string>
+    <string name="register">Register new account</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_jid">This Jid  is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_password_match">Passwords do not match</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="tab_activity_str">Students Hall</string>
+    <string name="get_test">GET</string>
+    <string name="set_test">SET</string>
+
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="change_profile">Change Profile</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="remove_friend">Remove Friend</string>
+    <string name="profile_status">Your status</string>
+    <string name="block_friend">Block Contact</string>
+    <string name="unblock_friend">Unblock Contact</string>
+    <string name="get_blocked_friends">GET BLOCKED LIST</string>
+
+    <string name="buddy_name">Name</string>
+    <string name="buddy_status">Status</string>
+</resources>

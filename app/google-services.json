@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "588401131998",
+    "firebase_url": "https://androidxmpp-b4554.firebaseio.com",
+    "project_id": "androidxmpp-b4554",
+    "storage_bucket": "androidxmpp-b4554.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588401131998:android:23b2722342675df5",
+        "android_client_info": {
+          "package_name": "com.ahmed.chatapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588401131998-5afn77jm0kfi6bjn38rj3p7pmmv8j61b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ahmed.chatapplication",
+            "certificate_hash": "c29b3fb08c0923ea2d7743452efc6dfd196723a1"
+          }
+        },
+        {
+          "client_id": "588401131998-a1ki5amec6v8gcrvkg5j4v1hh49n4o7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIarqhBZbVWOZc9XUPKf6iFCpilqpswf0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588401131998-a1ki5amec6v8gcrvkg5j4v1hh49n4o7q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
